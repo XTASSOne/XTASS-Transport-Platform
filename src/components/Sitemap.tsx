@@ -82,21 +82,21 @@ export default function Sitemap() {
                 <li className="flex items-start">
                   <span className="text-gray-400 font-medium mr-4 mt-0.5 text-sm">6.</span>
                   <div>
-                    <Link to="#" className="font-bold text-gray-900 hover:text-brand-maroon transition-colors block">Group Transportation</Link>
+                    <Link to="/group-transportation" className="font-bold text-gray-900 hover:text-brand-maroon transition-colors block">Group Transportation</Link>
                     <p className="text-sm text-gray-500 mt-1 leading-snug">Larger vehicles for families, events, and team travel</p>
                   </div>
                 </li>
                 <li className="flex items-start">
                   <span className="text-gray-400 font-medium mr-4 mt-0.5 text-sm">7.</span>
                   <div>
-                    <Link to="#" className="font-bold text-gray-900 hover:text-brand-maroon transition-colors block">Special Needs Transport</Link>
+                    <Link to="/special-needs-transport" className="font-bold text-gray-900 hover:text-brand-maroon transition-colors block">Special Needs Transport</Link>
                     <p className="text-sm text-gray-500 mt-1 leading-snug">Accessible transport with wheelchair and child seat options</p>
                   </div>
                 </li>
                 <li className="flex items-start">
                   <span className="text-gray-400 font-medium mr-4 mt-0.5 text-sm">8.</span>
                   <div>
-                    <Link to="#" className="font-bold text-gray-900 hover:text-brand-maroon transition-colors block">One-Way Rental</Link>
+                    <Link to="/one-way-rental" className="font-bold text-gray-900 hover:text-brand-maroon transition-colors block">One-Way Rental</Link>
                     <p className="text-sm text-gray-500 mt-1 leading-snug">Pick up at one location, drop off at another</p>
                   </div>
                 </li>

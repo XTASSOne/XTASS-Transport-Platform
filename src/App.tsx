@@ -2,13 +2,16 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import AirportTransfers from './components/AirportTransfers';
 import Footer from './components/Footer';
 import ForgotPassword from './components/ForgotPassword';
+import GroupTransportation from './components/GroupTransportation';
 import Header from './components/Header';
 import InstantPickup from './components/InstantPickup';
 import MainContent from './components/MainContent';
+import OneWayRental from './components/OneWayRental';
 import Register from './components/Register';
 import ScheduledRides from './components/ScheduledRides';
 import SignIn from './components/SignIn';
 import Sitemap from './components/Sitemap';
+import SpecialNeeds from './components/SpecialNeeds';
 
 export default function App() {
   return (
@@ -22,6 +25,9 @@ export default function App() {
             <Route path="/instant-pickup" element={<InstantPickup />} />
             <Route path="/scheduled-rides" element={<ScheduledRides />} />
             <Route path="/airport-transfers" element={<AirportTransfers />} />
+            <Route path="/group-transportation" element={<GroupTransportation />} />
+            <Route path="/special-needs-transport" element={<SpecialNeeds />} />
+            <Route path="/one-way-rental" element={<OneWayRental />} />
             <Route path="/signin" element={<SignIn />} />
             <Route path="/register" element={<Register />} />
             <Route path="/forgot-password" element={<ForgotPassword />} />

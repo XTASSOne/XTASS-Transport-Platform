@@ -21,7 +21,7 @@ export default function Footer() {
             <li><a href="/instant-pickup" className="text-gray-400 hover:text-white transition-colors text-[15px]">Instant Pickup</a></li>
             <li><a href="/scheduled-rides" className="text-gray-400 hover:text-white transition-colors text-[15px]">Scheduled Rides</a></li>
             <li><a href="/airport-transfers" className="text-gray-400 hover:text-white transition-colors text-[15px]">Airport Transfers</a></li>
-            <li><a href="#" className="text-gray-400 hover:text-white transition-colors text-[15px]">Group Transportation</a></li>
+            <li><a href="/group-transportation" className="text-gray-400 hover:text-white transition-colors text-[15px]">Group Transportation</a></li>
             <li><a href="#" className="text-gray-400 hover:text-white transition-colors text-[15px]">Pricing Information</a></li>
           </ul>
         </div>

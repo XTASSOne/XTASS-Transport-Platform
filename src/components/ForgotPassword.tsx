@@ -37,9 +37,15 @@ export default function ForgotPassword() {
   };
 
   return (
-    <main className="flex-grow flex flex-col items-center justify-center py-16 px-4 bg-gray-50">
-      <div className="w-full max-w-md bg-white p-8 shadow-2xl border border-gray-100">
-        <h1 className="text-2xl font-bold text-gray-900 mb-2 text-center">Reset Password</h1>
+    <main className="flex-grow flex items-center justify-center py-16 px-4 bg-gray-50">
+      <div className="w-full max-w-md bg-white p-8 sm:p-10 rounded shadow-xl border border-gray-100">
+        <div className="text-center mb-8">
+          <h1 className="text-2xl font-bold text-gray-900 mb-3">Forgot Password?</h1>
+          <p className="text-gray-500 text-sm leading-relaxed">
+            Enter the email or phone number linked to your account.<br />
+            We'll send you reset instructions.
+          </p>
+        </div>
         
         {isSuccess ? (
           <div className="text-center animate-in fade-in zoom-in duration-300">
@@ -53,19 +59,15 @@ export default function ForgotPassword() {
             </p>
             <Link 
               to="/signin" 
-              className="w-full block py-3 bg-brand-maroon text-white font-bold hover:bg-brand-maroon-hover transition-colors text-center shadow-sm"
+              className="w-full block py-3 bg-[#B75F72] hover:bg-[#A04F62] rounded text-white font-bold transition-colors text-center shadow-sm"
             >
-              Return to Sign In
+              Back to Sign In
             </Link>
           </div>
         ) : (
           <>
-            <p className="text-gray-600 text-center mb-8 text-sm leading-relaxed">
-              Enter your email address or phone number to receive a secure password reset link.
-            </p>
-
             {error && (
-              <div className="mb-6 p-4 bg-red-50 border border-red-200 text-red-600 text-sm font-medium rounded-sm">
+              <div className="mb-6 p-4 bg-red-50 border border-red-200 text-red-600 text-sm font-medium rounded">
                 <p>{error}</p>
                 {error.includes('No account found') && (
                   <p className="mt-3 pt-3 border-t border-red-200/50 text-xs">
@@ -75,16 +77,16 @@ export default function ForgotPassword() {
               </div>
             )}
 
-            <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+            <form onSubmit={handleSubmit} className="flex flex-col gap-6">
               <div>
-                <label className="block text-sm font-bold text-gray-700 mb-1.5">Email or Phone Number</label>
+                <label className="block text-sm font-bold text-gray-700 mb-2">Email or Phone Number</label>
                 <input 
                   type="text" 
                   value={identifier}
                   onChange={(e) => setIdentifier(e.target.value)}
                   disabled={isLoading}
-                  className={`w-full border p-3.5 text-sm focus:outline-none transition-colors ${error ? 'border-red-500 focus:border-red-500' : 'border-gray-300 focus:border-brand-maroon'} disabled:bg-gray-50 disabled:text-gray-500`} 
-                  placeholder="Email or Phone" 
+                  className={`w-full rounded border p-3 text-sm focus:outline-none focus:ring-1 transition-colors ${error ? 'border-red-500 focus:border-red-500 focus:ring-red-500' : 'border-gray-300 focus:border-brand-maroon focus:ring-brand-maroon'} disabled:bg-gray-50 disabled:text-gray-500`} 
+                  placeholder="john@example.com or 024 123 4567" 
                   autoFocus
                 />
               </div>
@@ -92,15 +94,15 @@ export default function ForgotPassword() {
               <button 
                 type="submit"
                 disabled={identifier.trim() === '' || isLoading}
-                className="w-full py-3.5 mt-2 bg-brand-maroon text-white font-bold hover:bg-brand-maroon-hover transition-colors disabled:opacity-50 flex items-center justify-center disabled:cursor-not-allowed shadow-sm"
+                className="w-full py-3 bg-[#B75F72] hover:bg-[#A04F62] rounded text-white font-bold transition-colors disabled:opacity-50 flex items-center justify-center disabled:cursor-not-allowed shadow-sm"
               >
-                {isLoading ? <Loader2 className="w-5 h-5 animate-spin" /> : 'Send Reset Link'}
+                {isLoading ? <Loader2 className="w-5 h-5 animate-spin" /> : 'Send Reset Instructions'}
               </button>
             </form>
 
-            <p className="mt-8 text-center text-sm text-gray-600 font-medium">
-              Remember your password? <Link to="/signin" className="text-brand-maroon font-bold hover:underline">Sign In</Link>
-            </p>
+            <div className="mt-8 text-center text-sm text-gray-600">
+              Remembered it? <Link to="/signin" className="font-bold text-brand-maroon hover:underline">Back to Sign In</Link>
+            </div>
           </>
         )}
       </div>

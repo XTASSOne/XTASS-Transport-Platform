@@ -66,7 +66,10 @@ export default function SignIn() {
   return (
     <main className="flex-grow flex flex-col items-center justify-center py-16 px-4 bg-gray-50">
       <div className="w-full max-w-md bg-white p-8 shadow-2xl border border-gray-100">
-        <h1 className="text-2xl font-bold text-gray-900 mb-6 text-center">Sign In to XTASS</h1>
+        <div className="mb-8">
+          <h1 className="text-2xl font-bold text-gray-900 mb-2 text-center md:text-left">Sign In to XTASS</h1>
+          <p className="text-gray-500 text-sm text-center md:text-left">Welcome back. Access your bookings and account.</p>
+        </div>
         
         {sessionExpired && (
           <div className="mb-6 p-3 bg-red-50 border border-red-200 text-red-600 text-sm font-medium rounded-sm">
@@ -88,8 +91,8 @@ export default function SignIn() {
               value={identifier}
               onChange={(e) => setIdentifier(e.target.value)}
               disabled={lockoutTimer > 0 || isLoading || isGoogleLoading}
-              className="w-full border border-gray-300 p-3 text-sm focus:outline-none focus:border-brand-maroon disabled:bg-gray-100 disabled:text-gray-500" 
-              placeholder="Email or Phone" 
+              className="w-full border border-gray-300 rounded p-3 text-sm focus:outline-none focus:border-brand-maroon focus:ring-1 focus:ring-brand-maroon disabled:bg-gray-100 disabled:text-gray-500" 
+              placeholder="john@example.com or 024 123 4567" 
             />
           </div>
           
@@ -111,8 +114,8 @@ export default function SignIn() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               disabled={lockoutTimer > 0 || isLoading || isGoogleLoading}
-              className="w-full border border-gray-300 p-3 text-sm focus:outline-none focus:border-brand-maroon disabled:bg-gray-100 disabled:text-gray-500" 
-              placeholder="Password" 
+              className="w-full border border-gray-300 rounded p-3 text-sm focus:outline-none focus:border-brand-maroon focus:ring-1 focus:ring-brand-maroon disabled:bg-gray-100 disabled:text-gray-500" 
+              placeholder="Your password" 
             />
           </div>
 
@@ -138,7 +141,7 @@ export default function SignIn() {
           <button 
             type="submit"
             disabled={!isFormValid || lockoutTimer > 0 || isLoading || isGoogleLoading}
-            className="w-full py-3 mt-4 bg-brand-maroon text-white font-bold hover:bg-brand-maroon-hover transition-colors disabled:opacity-50 flex items-center justify-center disabled:cursor-not-allowed"
+            className="w-full py-3 mt-4 bg-[#B75F72] hover:bg-[#A04F62] rounded text-white font-bold transition-colors disabled:opacity-50 flex items-center justify-center disabled:cursor-not-allowed"
           >
             {isLoading ? <Loader2 className="w-5 h-5 animate-spin" /> : 
              lockoutTimer > 0 ? `Try again in ${lockoutTimer}s` : 'Sign In'}
@@ -155,7 +158,7 @@ export default function SignIn() {
           type="button"
           onClick={handleGoogleSignIn}
           disabled={lockoutTimer > 0 || isLoading || isGoogleLoading}
-          className="w-full py-3 border border-gray-300 font-bold text-gray-700 hover:bg-gray-50 transition-colors flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+          className="w-full py-3 border border-gray-300 rounded font-bold text-gray-700 hover:bg-gray-50 transition-colors flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {isGoogleLoading ? <Loader2 className="w-5 h-5 animate-spin" /> : (
             <>

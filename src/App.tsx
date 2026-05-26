@@ -73,13 +73,19 @@ import SpecialNeeds from './components/SpecialNeeds';
 import HelpSupport from './components/HelpSupport';
 import RecentlyViewed from './components/RecentlyViewed';
 import RentalConfirmation from './components/RentalConfirmation';
+import AdminLogin from './components/admin/AdminLogin';
+import AdminPasswordRecovery from './components/admin/AdminPasswordRecovery';
+import AdminDashboard from './components/admin/AdminDashboard';
+import AllReservations from './components/admin/AllReservations';
+import ReservationDetail from './components/admin/ReservationDetail';
 
 function Layout({ children }: { children: React.ReactNode }) {
   const location = useLocation();
   const isSessionTimeout = location.pathname === '/session-timeout';
   const isPostLoginVerification = location.pathname === '/post-login-verification';
+  const isAdmin = location.pathname.startsWith('/admin');
 
-  if (isSessionTimeout || isPostLoginVerification) {
+  if (isSessionTimeout || isPostLoginVerification || isAdmin) {
     return <>{children}</>;
   }
 
@@ -101,6 +107,11 @@ export default function App() {
         <Routes>
           <Route path="/" element={<MainContent />} />
           <Route path="/sitemap" element={<Sitemap />} />
+          <Route path="/admin/login" element={<AdminLogin />} />
+          <Route path="/admin/recovery" element={<AdminPasswordRecovery />} />
+          <Route path="/admin/dashboard" element={<AdminDashboard />} />
+          <Route path="/admin/reservations" element={<AllReservations />} />
+          <Route path="/admin/reservations/:id" element={<ReservationDetail />} />
           <Route path="/help-support" element={<HelpSupport />} />
           <Route path="/recently-viewed" element={<RecentlyViewed />} />
           <Route path="/rental-confirmation" element={<RentalConfirmation />} />

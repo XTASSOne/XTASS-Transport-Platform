@@ -554,6 +554,54 @@ export default function Sitemap() {
               </ul>
             </div>
           </div>
+
+          {/* Category 4: Admin Control Panel */}
+          <div className="bg-white border-t-2 border-brand-maroon shadow-sm p-8">
+            <h2 className="text-xl font-black text-gray-900 uppercase tracking-widest mb-6 border-b border-gray-100 pb-4">
+              4. Admin Control Panel
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <ul className="space-y-6">
+                <li className="flex items-start">
+                  <span className="text-gray-400 font-medium mr-3 mt-0.5 text-sm">55.</span>
+                  <div>
+                    <Link to="/admin/login" className="font-bold text-gray-900 hover:text-brand-maroon transition-colors block">Admin Login</Link>
+                    <p className="text-sm text-gray-500 mt-1 leading-snug">Secure login for authorised staff</p>
+                  </div>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-gray-400 font-medium mr-3 mt-0.5 text-sm">56.</span>
+                  <div>
+                    <Link to="/admin/recovery" className="font-bold text-gray-900 hover:text-brand-maroon transition-colors block">Admin Password Recovery</Link>
+                    <p className="text-sm text-gray-500 mt-1 leading-snug">Password reset flow for admins</p>
+                  </div>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-gray-400 font-medium mr-3 mt-0.5 text-sm">57.</span>
+                  <div>
+                    <Link to="/admin/dashboard" className="font-bold text-gray-900 hover:text-brand-maroon transition-colors block">Admin Dashboard Overview</Link>
+                    <p className="text-sm text-gray-500 mt-1 leading-snug">High-level view of platform operational status</p>
+                  </div>
+                </li>
+              </ul>
+              <ul className="space-y-6">
+                <li className="flex items-start">
+                  <span className="text-gray-400 font-medium mr-3 mt-0.5 text-sm">58.</span>
+                  <div>
+                    <Link to="/admin/reservations" className="font-bold text-gray-900 hover:text-brand-maroon transition-colors block">All Reservations</Link>
+                    <p className="text-sm text-gray-500 mt-1 leading-snug">Complete list of all platform bookings</p>
+                  </div>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-gray-400 font-medium mr-3 mt-0.5 text-sm">59.</span>
+                  <div>
+                    <Link to="/admin/reservations/XTA-1234" className="font-bold text-gray-900 hover:text-brand-maroon transition-colors block">Reservation Detail</Link>
+                    <p className="text-sm text-gray-500 mt-1 leading-snug">Full detail view and admin controls for a single booking</p>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
       </section>
     </main>

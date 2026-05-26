@@ -199,7 +199,8 @@ export default function Header() {
                     <a href="#" className="text-sm font-medium text-gray-600 hover:text-brand-maroon px-2 py-1">View / Modify / Cancel</a>
                     <a href="#" className="text-sm font-medium text-gray-600 hover:text-brand-maroon px-2 py-1">All Deals And Coupons</a>
                     <a href="/one-way-rental" className="text-sm font-medium text-gray-600 hover:text-brand-maroon px-2 py-1">One Way Car Rental</a>
-                    <a href="#" className="text-sm font-medium text-gray-600 hover:text-brand-maroon px-2 py-1">Long-Term Car Rental</a>
+                    <a href="/long-term-rental" className="text-sm font-medium text-gray-600 hover:text-brand-maroon px-2 py-1">Long-Term Car Rental</a>
+                    <a href="/weekend-rental" className="text-sm font-medium text-gray-600 hover:text-brand-maroon px-2 py-1">Weekend Rental</a>
                   </div>
                 </div>
               )}

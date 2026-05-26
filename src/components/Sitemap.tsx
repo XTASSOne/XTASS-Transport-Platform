@@ -48,6 +48,34 @@ export default function Sitemap() {
                     <p className="text-sm text-gray-500 mt-1 leading-snug">Full directory of every page on the XTASS platform</p>
                   </div>
                 </li>
+                <li className="flex items-start">
+                  <span className="text-gray-400 font-medium mr-4 mt-0.5 text-sm">3.</span>
+                  <div>
+                    <Link to="/start-reservation" className="font-bold text-gray-900 hover:text-brand-maroon transition-colors block">Start a Reservation</Link>
+                    <p className="text-sm text-gray-500 mt-1 leading-snug">The main booking entry page with the full reservation form</p>
+                  </div>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-gray-400 font-medium mr-4 mt-0.5 text-sm">4.</span>
+                  <div>
+                    <Link to="/manage-reservation" className="font-bold text-gray-900 hover:text-brand-maroon transition-colors block">Manage Reservation</Link>
+                    <p className="text-sm text-gray-500 mt-1 leading-snug">Look up and modify or cancel an existing booking</p>
+                  </div>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-gray-400 font-medium mr-4 mt-0.5 text-sm">5.</span>
+                  <div>
+                    <Link to="/service-areas" className="font-bold text-gray-900 hover:text-brand-maroon transition-colors block">Service Areas</Link>
+                    <p className="text-sm text-gray-500 mt-1 leading-snug">View the regions, cities, and airports where XTASS operates</p>
+                  </div>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-gray-400 font-medium mr-4 mt-0.5 text-sm">6.</span>
+                  <div>
+                    <Link to="/pricing" className="font-bold text-gray-900 hover:text-brand-maroon transition-colors block">Pricing Information</Link>
+                    <p className="text-sm text-gray-500 mt-1 leading-snug">Learn about our fixed, all-inclusive pricing structure</p>
+                  </div>
+                </li>
               </ul>
             </div>
           </div>
@@ -59,45 +87,66 @@ export default function Sitemap() {
               <div className="w-12 h-0.5 bg-brand-yellow mb-6"></div>
               <ul className="space-y-6">
                 <li className="flex items-start">
-                  <span className="text-gray-400 font-medium mr-4 mt-0.5 text-sm">3.</span>
+                  <span className="text-gray-400 font-medium mr-4 mt-0.5 text-sm">7.</span>
                   <div>
                     <Link to="/instant-pickup" className="font-bold text-gray-900 hover:text-brand-maroon transition-colors block">Instant Pickup</Link>
                     <p className="text-sm text-gray-500 mt-1 leading-snug">On-demand transport — nearest driver dispatched immediately</p>
                   </div>
                 </li>
                 <li className="flex items-start">
-                  <span className="text-gray-400 font-medium mr-4 mt-0.5 text-sm">4.</span>
+                  <span className="text-gray-400 font-medium mr-4 mt-0.5 text-sm">8.</span>
                   <div>
                     <Link to="/scheduled-rides" className="font-bold text-gray-900 hover:text-brand-maroon transition-colors block">Scheduled Rides</Link>
                     <p className="text-sm text-gray-500 mt-1 leading-snug">Plan and pre-book your ride for any future date and time</p>
                   </div>
                 </li>
                 <li className="flex items-start">
-                  <span className="text-gray-400 font-medium mr-4 mt-0.5 text-sm">5.</span>
+                  <span className="text-gray-400 font-medium mr-4 mt-0.5 text-sm">9.</span>
                   <div>
                     <Link to="/airport-transfers" className="font-bold text-gray-900 hover:text-brand-maroon transition-colors block">Airport Transfers</Link>
                     <p className="text-sm text-gray-500 mt-1 leading-snug">Reliable airport connections at all 6 Ghana airports</p>
                   </div>
                 </li>
                 <li className="flex items-start">
-                  <span className="text-gray-400 font-medium mr-4 mt-0.5 text-sm">6.</span>
+                  <span className="text-gray-400 font-medium mr-4 mt-0.5 text-sm">10.</span>
                   <div>
                     <Link to="/group-transportation" className="font-bold text-gray-900 hover:text-brand-maroon transition-colors block">Group Transportation</Link>
                     <p className="text-sm text-gray-500 mt-1 leading-snug">Larger vehicles for families, events, and team travel</p>
                   </div>
                 </li>
                 <li className="flex items-start">
-                  <span className="text-gray-400 font-medium mr-4 mt-0.5 text-sm">7.</span>
+                  <span className="text-gray-400 font-medium mr-4 mt-0.5 text-sm">11.</span>
                   <div>
                     <Link to="/special-needs-transport" className="font-bold text-gray-900 hover:text-brand-maroon transition-colors block">Special Needs Transport</Link>
                     <p className="text-sm text-gray-500 mt-1 leading-snug">Accessible transport with wheelchair and child seat options</p>
                   </div>
                 </li>
                 <li className="flex items-start">
-                  <span className="text-gray-400 font-medium mr-4 mt-0.5 text-sm">8.</span>
+                  <span className="text-gray-400 font-medium mr-4 mt-0.5 text-sm">12.</span>
                   <div>
                     <Link to="/one-way-rental" className="font-bold text-gray-900 hover:text-brand-maroon transition-colors block">One-Way Rental</Link>
                     <p className="text-sm text-gray-500 mt-1 leading-snug">Pick up at one location, drop off at another</p>
+                  </div>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-gray-400 font-medium mr-4 mt-0.5 text-sm">13.</span>
+                  <div>
+                    <Link to="/long-term-rental" className="font-bold text-gray-900 hover:text-brand-maroon transition-colors block">Long-Term Rental</Link>
+                    <p className="text-sm text-gray-500 mt-1 leading-snug">Weekly or monthly rental discounts with unlimited mileage</p>
+                  </div>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-gray-400 font-medium mr-4 mt-0.5 text-sm">14.</span>
+                  <div>
+                    <Link to="/weekend-rental" className="font-bold text-gray-900 hover:text-brand-maroon transition-colors block">Weekend Rental</Link>
+                    <p className="text-sm text-gray-500 mt-1 leading-snug">Off-peak weekend rental rates with flexible Sunday returns</p>
+                  </div>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-gray-400 font-medium mr-4 mt-0.5 text-sm">15.</span>
+                  <div>
+                    <Link to="/vehicle-fleet" className="font-bold text-gray-900 hover:text-brand-maroon transition-colors block">Vehicle Fleet</Link>
+                    <p className="text-sm text-gray-500 mt-1 leading-snug">Complete details and classifications of the XTASS fleet</p>
                   </div>
                 </li>
               </ul>
@@ -111,21 +160,21 @@ export default function Sitemap() {
               <div className="w-12 h-0.5 bg-brand-yellow mb-6"></div>
               <ul className="space-y-6">
                 <li className="flex items-start">
-                  <span className="text-gray-400 font-medium mr-4 mt-0.5 text-sm">9.</span>
+                  <span className="text-gray-400 font-medium mr-3 mt-0.5 text-sm">16.</span>
                   <div>
                     <Link to="/signin" className="font-bold text-gray-900 hover:text-brand-maroon transition-colors block">Sign In</Link>
                     <p className="text-sm text-gray-500 mt-1 leading-snug">Log in to your XTASS customer account</p>
                   </div>
                 </li>
                 <li className="flex items-start">
-                  <span className="text-gray-400 font-medium mr-3 mt-0.5 text-sm">10.</span>
+                  <span className="text-gray-400 font-medium mr-3 mt-0.5 text-sm">17.</span>
                   <div>
                     <Link to="/register" className="font-bold text-gray-900 hover:text-brand-maroon transition-colors block">Register</Link>
                     <p className="text-sm text-gray-500 mt-1 leading-snug">Create a new XTASS customer account</p>
                   </div>
                 </li>
                 <li className="flex items-start">
-                  <span className="text-gray-400 font-medium mr-3 mt-0.5 text-sm">11.</span>
+                  <span className="text-gray-400 font-medium mr-3 mt-0.5 text-sm">18.</span>
                   <div>
                     <Link to="/forgot-password" className="font-bold text-gray-900 hover:text-brand-maroon transition-colors block">Forgot Password</Link>
                     <p className="text-sm text-gray-500 mt-1 leading-snug">Reset your password via email or phone number</p>

@@ -17,12 +17,14 @@ export default function Footer() {
         {/* Column 2 */}
         <div>
           <h4 className="font-bold text-lg mb-6 pb-2 border-b border-white/10">Our Services</h4>
-          <ul className="flex flex-col gap-3">
+            <ul className="flex flex-col gap-3">
             <li><a href="/instant-pickup" className="text-gray-400 hover:text-white transition-colors text-[15px]">Instant Pickup</a></li>
             <li><a href="/scheduled-rides" className="text-gray-400 hover:text-white transition-colors text-[15px]">Scheduled Rides</a></li>
             <li><a href="/airport-transfers" className="text-gray-400 hover:text-white transition-colors text-[15px]">Airport Transfers</a></li>
             <li><a href="/group-transportation" className="text-gray-400 hover:text-white transition-colors text-[15px]">Group Transportation</a></li>
-            <li><a href="#" className="text-gray-400 hover:text-white transition-colors text-[15px]">Pricing Information</a></li>
+            <li><a href="/long-term-rental" className="text-gray-400 hover:text-white transition-colors text-[15px]">Long-Term Rental</a></li>
+            <li><a href="/one-way-rental" className="text-gray-400 hover:text-white transition-colors text-[15px]">One-Way Rental</a></li>
+            <li><a href="/weekend-rental" className="text-gray-400 hover:text-white transition-colors text-[15px]">Weekend Rental</a></li>
           </ul>
         </div>
 

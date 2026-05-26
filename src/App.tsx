@@ -7,6 +7,13 @@ import Header from './components/Header';
 import InstantPickup from './components/InstantPickup';
 import MainContent from './components/MainContent';
 import OneWayRental from './components/OneWayRental';
+import LongTermRental from './components/LongTermRental';
+import WeekendRental from './components/WeekendRental';
+import VehicleFleet from './components/VehicleFleet';
+import StartReservation from './components/StartReservation';
+import ManageReservation from './components/ManageReservation';
+import ServiceAreas from './components/ServiceAreas';
+import PricingInformation from './components/PricingInformation';
 import Register from './components/Register';
 import ScheduledRides from './components/ScheduledRides';
 import SignIn from './components/SignIn';
@@ -28,6 +35,13 @@ export default function App() {
             <Route path="/group-transportation" element={<GroupTransportation />} />
             <Route path="/special-needs-transport" element={<SpecialNeeds />} />
             <Route path="/one-way-rental" element={<OneWayRental />} />
+            <Route path="/long-term-rental" element={<LongTermRental />} />
+            <Route path="/weekend-rental" element={<WeekendRental />} />
+            <Route path="/vehicle-fleet" element={<VehicleFleet />} />
+            <Route path="/start-reservation" element={<StartReservation />} />
+            <Route path="/manage-reservation" element={<ManageReservation />} />
+            <Route path="/service-areas" element={<ServiceAreas />} />
+            <Route path="/pricing" element={<PricingInformation />} />
             <Route path="/signin" element={<SignIn />} />
             <Route path="/register" element={<Register />} />
             <Route path="/forgot-password" element={<ForgotPassword />} />

@@ -1,277 +1,187 @@
 import { useState } from 'react';
-import { Plus, X, ArrowRight, Check, Users, Briefcase, Info, Car } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { Plus, X, CarFront, Check, ChevronRight, Award } from 'lucide-react';
 
-type Vehicle = {
+interface VehicleStats {
   id: string;
   name: string;
-  image: string;
+  class: string;
+  rate: number;
   passengers: number;
   luggage: number;
   transmission: string;
   fuel: string;
   ac: boolean;
-  rate: string;
-  level: string;
-  bestFor: string;
-};
+  badges: string[];
+}
 
-const fleetSpecs: Vehicle[] = [
-  {
-    id: 'sedan',
-    name: 'Executive Sedan',
-    image: 'https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&q=80',
-    passengers: 3,
-    luggage: 2,
-    transmission: 'Automatic',
-    fuel: 'Petrol / Hybrid',
-    ac: true,
-    rate: 'From $85 / day',
-    level: 'Premium Business',
-    bestFor: 'Corporate meetings, Airport transfers (1-2 pax)'
+const MOCK_COMPARISON: VehicleStats[] = [
+  { 
+    id: '1', name: 'Toyota Corolla', class: 'Economy', rate: 45.50,
+    passengers: 4, luggage: 3, transmission: 'Automatic', fuel: 'Petrol', ac: true, badges: ['Budget Friendly']
   },
-  {
-    id: 'suv',
-    name: 'Luxury SUV',
-    image: 'https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?auto=format&fit=crop&q=80',
-    passengers: 4,
-    luggage: 4,
-    transmission: 'Automatic',
-    fuel: 'Petrol / Diesel',
-    ac: true,
-    rate: 'From $140 / day',
-    level: 'VVIP / Heavy Duty',
-    bestFor: 'Delegations, Regional site visits, Family travel'
-  },
-  {
-    id: 'minivan',
-    name: 'Corporate Minivan',
-    image: 'https://images.unsplash.com/photo-1559405407-7977a4eb1cc8?auto=format&fit=crop&q=80',
-    passengers: 7,
-    luggage: 6,
-    transmission: 'Automatic',
-    fuel: 'Diesel',
-    ac: true,
-    rate: 'From $180 / day',
-    level: 'Group / Executive',
-    bestFor: 'Team building, Group events, Airport transfers (4+ pax)'
+  { 
+    id: '2', name: 'Mercedes-Benz E-Class', class: 'Premium', rate: 120.00,
+    passengers: 4, luggage: 3, transmission: 'Automatic', fuel: 'Petrol', ac: true, badges: ['Executive Choice', 'Top Rated']
   }
 ];
 
 export default function VehicleComparison() {
-  const [selectedVehicles, setSelectedVehicles] = useState<Vehicle[]>([fleetSpecs[0], fleetSpecs[1]]);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [vehicles, setVehicles] = useState<VehicleStats[]>(MOCK_COMPARISON);
 
-  const handleAddVehicle = (vehicle: Vehicle) => {
-    if (selectedVehicles.length < 3 && !selectedVehicles.find(v => v.id === vehicle.id)) {
-      setSelectedVehicles([...selectedVehicles, vehicle]);
-    }
-    setIsModalOpen(false);
+  const removeVehicle = (id: string) => {
+    setVehicles(vehicles.filter(v => v.id !== id));
   };
 
-  const handleRemoveVehicle = (id: string) => {
-    setSelectedVehicles(selectedVehicles.filter(v => v.id !== id));
+  const getEmptySlots = () => {
+    return 3 - vehicles.length;
   };
-
-  const availableToAdd = fleetSpecs.filter(v => !selectedVehicles.find(sv => sv.id === v.id));
 
   return (
-    <main className="flex-grow bg-gray-50 pb-24">
-      {/* Hero Section */}
-      <section className="bg-brand-maroon text-white pt-20 pb-16">
-        <div className="max-w-7xl mx-auto px-6 md:px-12 text-center">
-          <h1 className="text-4xl md:text-5xl font-black mb-6 tracking-tight uppercase">Compare Vehicles</h1>
-          <p className="text-xl md:text-2xl opacity-90 max-w-2xl mx-auto font-medium">
-            Side-by-side specifications to help you choose the perfect ride for your itinerary.
-          </p>
-        </div>
-      </section>
-
-      <section className="max-w-7xl mx-auto px-6 md:px-12 py-16 -mt-8 relative z-10">
-        <div className="bg-white shadow-xl border border-gray-100 p-8 rounded-none overflow-x-auto">
-          
-          <div className="min-w-[800px]">
-            {/* Header / Selection Row */}
-            <div className="flex border-b-2 border-gray-900 pb-6 mb-6">
-              <div className="w-1/4 pr-6 flex flex-col justify-end">
-                <h2 className="text-2xl font-black text-gray-900 uppercase tracking-tight">Fleet Specifications</h2>
-                <p className="text-sm text-gray-500 font-medium">Compare up to 3 vehicles.</p>
-              </div>
-              
-              {selectedVehicles.map((vehicle) => (
-                <div key={vehicle.id} className="w-1/4 px-4 relative flex flex-col items-center">
-                  {selectedVehicles.length > 1 && (
-                    <button 
-                      onClick={() => handleRemoveVehicle(vehicle.id)}
-                      className="absolute top-0 right-4 w-8 h-8 bg-white border border-gray-200 text-gray-400 hover:text-red-500 hover:border-red-500 rounded-full flex items-center justify-center transition-colors z-10 shadow-sm"
-                      title="Remove vehicle"
-                    >
-                      <X className="w-4 h-4" />
-                    </button>
-                  )}
-                  <img src={vehicle.image} alt={vehicle.name} className="w-full h-32 object-cover mb-4 shadow border border-gray-100" />
-                  <h3 className="text-lg font-bold text-gray-900 text-center">{vehicle.name}</h3>
-                </div>
-              ))}
-
-              {selectedVehicles.length < 3 && (
-                <div className="w-1/4 px-4 flex flex-col items-center justify-center">
-                  <button 
-                    onClick={() => setIsModalOpen(true)}
-                    className="w-full h-32 border-2 border-dashed border-gray-300 hover:border-brand-maroon hover:bg-brand-maroon/5 group flex flex-col items-center justify-center transition-colors"
-                  >
-                    <Plus className="w-8 h-8 text-gray-400 group-hover:text-brand-maroon mb-2 transition-colors" />
-                    <span className="font-bold text-gray-500 group-hover:text-brand-maroon transition-colors text-sm uppercase tracking-wider">Add Vehicle</span>
-                  </button>
-                </div>
-              )}
-            </div>
-
-            {/* Comparison Rows */}
-            <div className="divide-y divide-gray-100">
-              
-              {/* Daily Rate Row */}
-              <div className="flex py-4">
-                <div className="w-1/4 pr-6 font-bold text-gray-700 flex items-center">Daily Rate</div>
-                {selectedVehicles.map((vehicle) => (
-                  <div key={`${vehicle.id}-rate`} className="w-1/4 px-4 text-center font-black text-brand-maroon text-lg">
-                    {vehicle.rate}
-                  </div>
-                ))}
-                {selectedVehicles.length < 3 && <div className="w-1/4 px-4"></div>}
-              </div>
-
-              {/* Passengers Row */}
-              <div className="flex py-4">
-                <div className="w-1/4 pr-6 font-bold text-gray-700 flex items-center"><Users className="w-4 h-4 mr-2" /> Passengers</div>
-                {selectedVehicles.map((vehicle) => (
-                  <div key={`${vehicle.id}-pax`} className="w-1/4 px-4 text-center font-medium text-gray-600">
-                    Up to {vehicle.passengers}
-                  </div>
-                ))}
-                {selectedVehicles.length < 3 && <div className="w-1/4 px-4"></div>}
-              </div>
-
-              {/* Luggage Row */}
-              <div className="flex py-4">
-                <div className="w-1/4 pr-6 font-bold text-gray-700 flex items-center"><Briefcase className="w-4 h-4 mr-2" /> Luggage (Large)</div>
-                {selectedVehicles.map((vehicle) => (
-                  <div key={`${vehicle.id}-luggage`} className="w-1/4 px-4 text-center font-medium text-gray-600">
-                    {vehicle.luggage} Bags
-                  </div>
-                ))}
-                {selectedVehicles.length < 3 && <div className="w-1/4 px-4"></div>}
-              </div>
-
-              {/* Transmission Row */}
-              <div className="flex py-4">
-                <div className="w-1/4 pr-6 font-bold text-gray-700 flex items-center">Transmission</div>
-                {selectedVehicles.map((vehicle) => (
-                  <div key={`${vehicle.id}-trans`} className="w-1/4 px-4 text-center font-medium text-gray-600">
-                    {vehicle.transmission}
-                  </div>
-                ))}
-                {selectedVehicles.length < 3 && <div className="w-1/4 px-4"></div>}
-              </div>
-
-              {/* Fuel Row */}
-              <div className="flex py-4">
-                <div className="w-1/4 pr-6 font-bold text-gray-700 flex items-center">Fuel Type</div>
-                {selectedVehicles.map((vehicle) => (
-                  <div key={`${vehicle.id}-fuel`} className="w-1/4 px-4 text-center font-medium text-gray-600">
-                    {vehicle.fuel}
-                  </div>
-                ))}
-                {selectedVehicles.length < 3 && <div className="w-1/4 px-4"></div>}
-              </div>
-
-              {/* AC Row */}
-              <div className="flex py-4">
-                <div className="w-1/4 pr-6 font-bold text-gray-700 flex items-center">Air Conditioning</div>
-                {selectedVehicles.map((vehicle) => (
-                  <div key={`${vehicle.id}-ac`} className="w-1/4 px-4 flex justify-center">
-                    {vehicle.ac ? <Check className="w-5 h-5 text-green-600" /> : <X className="w-5 h-5 text-red-500" />}
-                  </div>
-                ))}
-                {selectedVehicles.length < 3 && <div className="w-1/4 px-4"></div>}
-              </div>
-
-              {/* Service Level Row */}
-              <div className="flex py-4">
-                <div className="w-1/4 pr-6 font-bold text-gray-700 flex items-center">Service Level</div>
-                {selectedVehicles.map((vehicle) => (
-                  <div key={`${vehicle.id}-lvl`} className="w-1/4 px-4 flex justify-center">
-                    <span className="inline-block bg-gray-100 text-gray-800 text-xs font-bold px-3 py-1 uppercase tracking-widest">{vehicle.level}</span>
-                  </div>
-                ))}
-                {selectedVehicles.length < 3 && <div className="w-1/4 px-4"></div>}
-              </div>
-
-              {/* Best For Row */}
-              <div className="flex py-4">
-                <div className="w-1/4 pr-6 font-bold text-gray-700 flex items-start pt-1"><Info className="w-4 h-4 mr-2 shrink-0 mt-0.5" /> Best For</div>
-                {selectedVehicles.map((vehicle) => (
-                  <div key={`${vehicle.id}-best`} className="w-1/4 px-4 text-center font-medium text-gray-600 text-sm italic">
-                    {vehicle.bestFor}
-                  </div>
-                ))}
-                {selectedVehicles.length < 3 && <div className="w-1/4 px-4"></div>}
-              </div>
-
-              {/* Book Buttons Row */}
-              <div className="flex pt-8 pb-4">
-                <div className="w-1/4 pr-6"></div>
-                {selectedVehicles.map((vehicle) => (
-                  <div key={`${vehicle.id}-book`} className="w-1/4 px-4">
-                    <Link 
-                      to={`/start-reservation?type=${vehicle.id}`} 
-                      className="w-full bg-brand-yellow hover:bg-brand-yellow-hover text-brand-maroon-dark font-bold py-3 uppercase tracking-wider text-xs transition-colors flex items-center justify-center text-center px-2"
-                    >
-                      Book {vehicle.name}
-                    </Link>
-                  </div>
-                ))}
-                {selectedVehicles.length < 3 && <div className="w-1/4 px-4"></div>}
-              </div>
-
-            </div>
+    <main className="flex-grow bg-gray-50 pb-32">
+      <div className="bg-brand-maroon py-8 md:py-12">
+        <div className="max-w-6xl mx-auto px-4 md:px-6 flex flex-col md:flex-row md:items-center justify-between">
+          <div>
+            <h1 className="text-3xl md:text-4xl font-black text-white uppercase tracking-tight mb-2">Compare Vehicles</h1>
+            <p className="text-gray-200 font-medium text-lg">Compare up to 3 vehicles side by side to find your perfect ride.</p>
           </div>
+          {vehicles.length > 0 && (
+             <button onClick={() => setVehicles([])} className="mt-4 md:mt-0 text-white/70 hover:text-white font-bold uppercase tracking-widest text-xs transition-colors self-start md:self-auto">
+               Clear All
+             </button>
+          )}
         </div>
-      </section>
+      </div>
 
-      {/* Modal for adding a vehicle */}
-      {isModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-gray-900/80 backdrop-blur-sm animate-in fade-in duration-200">
-          <div className="bg-white max-w-2xl w-full p-8 shadow-2xl relative">
-            <button 
-              onClick={() => setIsModalOpen(false)}
-              className="absolute top-4 right-4 text-gray-400 hover:text-gray-900 transition-colors"
-            >
-              <X className="w-6 h-6" />
-            </button>
-            <h2 className="text-2xl font-black text-gray-900 mb-6 uppercase tracking-tight">Select Vehicle to Compare</h2>
-            
-            <div className="space-y-4 max-h-[60vh] overflow-y-auto">
-              {availableToAdd.length === 0 ? (
-                <p className="text-gray-500 text-center py-8">All vehicles are currently selected.</p>
-              ) : (
-                availableToAdd.map(vehicle => (
-                  <div key={vehicle.id} className="flex border border-gray-200 p-4 hover:border-brand-maroon cursor-pointer group transition-colors" onClick={() => handleAddVehicle(vehicle)}>
-                    <img src={vehicle.image} alt={vehicle.name} className="w-32 h-24 object-cover shrink-0" />
-                    <div className="ml-6 flex flex-col justify-center flex-grow">
-                      <h3 className="text-lg font-bold text-gray-900 group-hover:text-brand-maroon">{vehicle.name}</h3>
-                      <p className="text-sm font-medium text-gray-500 mb-2">{vehicle.level}</p>
-                      <span className="text-xs font-bold text-brand-maroon uppercase tracking-widest flex items-center">
-                        Add to comparison <ArrowRight className="w-3 h-3 ml-1" />
-                      </span>
-                    </div>
-                  </div>
-                ))
-              )}
-            </div>
-          </div>
+      <div className="max-w-6xl mx-auto px-4 md:px-6 py-12 -mt-8 relative z-20">
+        
+        {/* Vehicle Selection Header row */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mb-8">
+           <div className="hidden md:block"></div> {/* Spacer for first column in desktop */}
+
+           {vehicles.map(v => (
+             <div key={v.id} className="bg-white border-t-4 border-brand-maroon shadow-md relative group flex flex-col h-full">
+               <button 
+                 onClick={() => removeVehicle(v.id)}
+                 className="absolute top-2 right-2 w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-red-100 hover:text-red-600 transition-colors z-10"
+               >
+                 <X className="w-4 h-4" />
+               </button>
+               <div className="h-24 bg-gray-50 flex items-center justify-center border-b border-gray-100 shrink-0">
+                  <CarFront className="w-12 h-12 text-gray-300" />
+               </div>
+               <div className="p-4 flex flex-col flex-grow">
+                 <div className="flex flex-wrap gap-1 mb-2">
+                   {v.badges.map(b => (
+                     <span key={b} className="px-1.5 py-0.5 bg-brand-yellow/30 text-gray-900 text-[10px] font-black uppercase tracking-wider block truncate max-w-full">
+                       {b}
+                     </span>
+                   ))}
+                 </div>
+                 <span className="text-[10px] font-bold text-gray-500 uppercase tracking-widest block mb-1">{v.class}</span>
+                 <h3 className="font-black text-gray-900 text-sm md:text-base uppercase tracking-tight mb-auto leading-tight">{v.name}</h3>
+               </div>
+             </div>
+           ))}
+
+           {/* Empty Slots */}
+           {Array.from({ length: getEmptySlots() }).map((_, i) => (
+             <Link to="/available-vehicles" key={`empty-${i}`} className="bg-white border-2 border-dashed border-gray-300 hover:border-brand-maroon hover:bg-brand-maroon/5 group flex flex-col items-center justify-center p-6 text-center transition-colors min-h-[180px]">
+               <div className="w-12 h-12 rounded-full bg-gray-100 group-hover:bg-brand-maroon group-hover:text-white flex items-center justify-center mb-3 transition-colors">
+                  <Plus className="w-6 h-6" />
+               </div>
+               <span className="font-bold text-gray-600 uppercase tracking-wider text-xs group-hover:text-brand-maroon transition-colors">Add Vehicle</span>
+             </Link>
+           ))}
         </div>
-      )}
+
+        {/* Comparison Table */}
+        {vehicles.length > 0 ? (
+          <div className="bg-white shadow-xl border border-gray-200 overflow-x-auto">
+            <table className="w-full text-left border-collapse min-w-[600px]">
+              <tbody>
+                {/* Daily Rate */}
+                <tr>
+                  <th className="py-4 px-6 border-b border-r border-gray-200 bg-gray-50 font-black text-gray-900 uppercase tracking-widest text-xs w-1/4">Daily Rate</th>
+                  {vehicles.map(v => (
+                    <td key={v.id} className="py-4 px-6 border-b border-gray-200 text-center w-1/4">
+                       <span className="text-xl font-black text-brand-maroon">GH₵ {v.rate.toFixed(2)}</span>
+                    </td>
+                  ))}
+                  {Array.from({ length: getEmptySlots() }).map((_, i) => <td key={`td-rate-${i}`} className="border-b border-gray-200 bg-gray-50/50"></td>)}
+                </tr>
+                {/* Passengers */}
+                <tr>
+                  <th className="py-4 px-6 border-b border-r border-gray-200 bg-gray-50 font-bold text-gray-500 uppercase tracking-widest text-xs">Passengers</th>
+                  {vehicles.map(v => (
+                    <td key={v.id} className="py-4 px-6 border-b border-gray-200 text-center font-bold text-gray-900">{v.passengers} Adults</td>
+                  ))}
+                  {Array.from({ length: getEmptySlots() }).map((_, i) => <td key={`td-pass-${i}`} className="border-b border-gray-200 bg-gray-50/50"></td>)}
+                </tr>
+                {/* Luggage */}
+                <tr>
+                  <th className="py-4 px-6 border-b border-r border-gray-200 bg-gray-50 font-bold text-gray-500 uppercase tracking-widest text-xs">Luggage</th>
+                  {vehicles.map(v => (
+                    <td key={v.id} className="py-4 px-6 border-b border-gray-200 text-center font-bold text-gray-900">{v.luggage} Bags</td>
+                  ))}
+                  {Array.from({ length: getEmptySlots() }).map((_, i) => <td key={`td-lug-${i}`} className="border-b border-gray-200 bg-gray-50/50"></td>)}
+                </tr>
+                {/* Transmission */}
+                <tr>
+                  <th className="py-4 px-6 border-b border-r border-gray-200 bg-gray-50 font-bold text-gray-500 uppercase tracking-widest text-xs">Transmission</th>
+                  {vehicles.map(v => (
+                     <td key={v.id} className="py-4 px-6 border-b border-gray-200 text-center font-bold text-gray-900">{v.transmission}</td>
+                  ))}
+                  {Array.from({ length: getEmptySlots() }).map((_, i) => <td key={`td-trans-${i}`} className="border-b border-gray-200 bg-gray-50/50"></td>)}
+                </tr>
+                {/* Fuel */}
+                <tr>
+                  <th className="py-4 px-6 border-b border-r border-gray-200 bg-gray-50 font-bold text-gray-500 uppercase tracking-widest text-xs">Fuel Type</th>
+                  {vehicles.map(v => (
+                     <td key={v.id} className="py-4 px-6 border-b border-gray-200 text-center font-bold text-gray-900">{v.fuel}</td>
+                  ))}
+                  {Array.from({ length: getEmptySlots() }).map((_, i) => <td key={`td-fuel-${i}`} className="border-b border-gray-200 bg-gray-50/50"></td>)}
+                </tr>
+                {/* AC */}
+                <tr>
+                  <th className="py-4 px-6 border-b border-r border-gray-200 bg-gray-50 font-bold text-gray-500 uppercase tracking-widest text-xs">Air Conditioning</th>
+                  {vehicles.map(v => (
+                     <td key={v.id} className="py-4 px-6 border-b border-gray-200 text-center">
+                       {v.ac ? <Check className="w-5 h-5 text-green-500 mx-auto" /> : '-'}
+                     </td>
+                  ))}
+                  {Array.from({ length: getEmptySlots() }).map((_, i) => <td key={`td-ac-${i}`} className="border-b border-gray-200 bg-gray-50/50"></td>)}
+                </tr>
+                {/* Actions */}
+                <tr>
+                  <th className="py-6 px-6 border-r border-gray-200 bg-gray-50 font-bold text-gray-500 uppercase tracking-widest text-xs border-b-0"></th>
+                  {vehicles.map(v => (
+                     <td key={v.id} className="p-4 border-t border-gray-200 align-top">
+                       <button onClick={() => alert(`Proceeding with ${v.name}`)} className="w-full bg-brand-yellow hover:bg-brand-yellow-hover font-black text-gray-900 py-3 uppercase tracking-wider text-xs transition-colors flex items-center justify-center">
+                         Select <ChevronRight className="w-4 h-4 ml-1" />
+                       </button>
+                     </td>
+                  ))}
+                  {Array.from({ length: getEmptySlots() }).map((_, i) => <td key={`td-act-${i}`} className="p-4 bg-gray-50/50 border-t border-gray-200"></td>)}
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        ) : (
+          <div className="bg-white border border-gray-200 p-16 text-center shadow-sm">
+             <CarFront className="w-16 h-16 text-gray-300 mx-auto mb-6" />
+             <h3 className="text-2xl font-black text-gray-900 mb-2 uppercase tracking-tight">No Vehicles Selected</h3>
+             <p className="text-gray-500 font-medium mb-8">Add vehicles to the comparison tool to see their features side-by-side.</p>
+             <Link 
+                to="/available-vehicles"
+                className="inline-flex items-center bg-brand-yellow font-black text-gray-900 py-4 px-8 hover:bg-brand-yellow-hover transition-colors text-sm uppercase tracking-wider shadow-sm"
+              >
+                Browse Available Vehicles
+              </Link>
+          </div>
+        )}
+
+      </div>
     </main>
   );
 }

@@ -202,6 +202,13 @@ export default function Sitemap() {
                     <p className="text-sm text-gray-500 mt-1 leading-snug">Booking session expiry and resumption</p>
                   </div>
                 </li>
+                <li className="flex items-start">
+                  <span className="text-gray-400 font-medium mr-4 mt-0.5 text-sm">17.</span>
+                  <div>
+                    <Link to="/help-support" className="font-bold text-gray-900 hover:text-brand-maroon transition-colors block">Help &amp; Support</Link>
+                    <p className="text-sm text-gray-500 mt-1 leading-snug">In-app support hub with contact options and shortcuts</p>
+                  </div>
+                </li>
               </ul>
             </div>
           </div>
@@ -322,6 +329,13 @@ export default function Sitemap() {
                   <div>
                     <Link to="/payment-processing" className="font-bold text-gray-900 hover:text-brand-maroon transition-colors block">Payment Processing</Link>
                     <p className="text-sm text-gray-500 mt-1 leading-snug">Loading and success/failure states for payment</p>
+                  </div>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-gray-400 font-medium mr-4 mt-0.5 text-sm">25.7.</span>
+                  <div>
+                    <Link to="/rental-confirmation" className="font-bold text-gray-900 hover:text-brand-maroon transition-colors block">Rental Booking Confirmation</Link>
+                    <p className="text-sm text-gray-500 mt-1 leading-snug">Review details specific to car rentals before reserving</p>
                   </div>
                 </li>
               </ul>
@@ -528,6 +542,13 @@ export default function Sitemap() {
                   <div>
                     <Link to="/notification-preferences" className="font-bold text-gray-900 hover:text-brand-maroon transition-colors block">Notification Preferences</Link>
                     <p className="text-sm text-gray-500 mt-1 leading-snug">Control SMS, email, and in-app alert settings</p>
+                  </div>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-gray-400 font-medium mr-3 mt-0.5 text-sm">54.</span>
+                  <div>
+                    <Link to="/recently-viewed" className="font-bold text-gray-900 hover:text-brand-maroon transition-colors block">Recently Viewed &amp; Favourites</Link>
+                    <p className="text-sm text-gray-500 mt-1 leading-snug">List of saved and recently visited vehicles</p>
                   </div>
                 </li>
               </ul>

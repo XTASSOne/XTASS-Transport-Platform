@@ -1,133 +1,143 @@
-import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
+import { Accessibility, MapPin, Calendar, Users, Phone, ArrowRight, ShieldCheck, HelpCircle } from 'lucide-react';
 
 export default function SpecialNeeds() {
-  const heroStyle = {
-    backgroundImage: 'linear-gradient(to right, rgba(139, 19, 49, 0.9) 0%, rgba(139, 19, 49, 0.6) 50%, rgba(0, 0, 0, 0.2) 100%), url("https://images.unsplash.com/photo-1573497161161-c3e73707e25c?auto=format&fit=crop&q=80")',
-    backgroundSize: 'cover',
-    backgroundPosition: 'center'
+  const navigate = useNavigate();
+  
+  // State
+  const [needsWheelchair, setNeedsWheelchair] = useState(true);
+  const [pickup, setPickup] = useState('Kotoka International Airport (ACC)');
+  const [dropoff, setDropoff] = useState('Kempinski Hotel Gold Coast City Accra');
+  const [date, setDate] = useState('2024-11-15');
+  const [time, setTime] = useState('14:30');
+  const [passengers, setPassengers] = useState(2);
+
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    navigate('/available-vehicles');
   };
 
   return (
-    <main className="flex-grow">
-      {/* Service Hero */}
-      <section className="relative h-[500px] flex items-center overflow-hidden" style={heroStyle}>
-        <div className="max-w-7xl mx-auto px-6 md:px-12 w-full relative z-10 text-white">
-          <div className="max-w-3xl">
-            <p className="uppercase tracking-widest text-sm font-semibold mb-2 opacity-90">XTASS Services</p>
-            <h1 
-              className="text-5xl md:text-6xl font-black italic mb-6 leading-tight uppercase bg-white/20 inline-block px-2 text-transparent bg-clip-text" 
-              style={{ color: 'rgba(255,255,255,0.9)', textShadow: '2px 2px 4px rgba(0,0,0,0.3)' }}
-            >
-              Accessible Transport —<br />
-              <span className="text-white">Everyone Deserves A Safe Ride</span>
+    <main className="flex-grow bg-gray-50 pb-24">
+      {/* Header */}
+      <div className="bg-[#1A1A1A] py-16">
+        <div className="max-w-4xl mx-auto px-4 md:px-6 flex items-start">
+          <div className="w-16 h-16 bg-brand-yellow rounded-full flex items-center justify-center mr-6 shrink-0 mt-1">
+            <Accessibility className="w-8 h-8 text-gray-900" />
+          </div>
+          <div>
+            <h1 className="text-3xl md:text-5xl font-black text-white uppercase tracking-tighter mb-4">
+              Accessible Transport
             </h1>
-            <p className="text-lg md:text-xl mb-8 leading-relaxed">
-              Transport that accommodates every passenger. Wheelchair access, child seats, and trained drivers.
+            <p className="text-gray-300 font-medium text-lg max-w-2xl">
+               Book a ride structured around your specific needs. Our vehicles and drivers are equipped to provide safe, comfortable transit.
             </p>
-            <Link 
-              to="/" 
-              className="inline-block bg-brand-yellow text-gray-900 font-bold text-sm px-8 py-3.5 hover:bg-brand-yellow-hover transition duration-300 shadow-sm"
-            >
-              Book Now
-            </Link>
           </div>
         </div>
-      </section>
+      </div>
 
-      {/* Accessibility Features */}
-      <section className="py-20 bg-white">
-        <div className="max-w-5xl mx-auto px-6 md:px-12">
-          <h2 className="text-3xl font-bold text-brand-maroon mb-10">Accessibility Features Available</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="bg-white p-10 border border-gray-200 shadow-sm hover:shadow-md transition">
-              <h3 className="text-2xl font-bold text-brand-maroon mb-4">Wheelchair Access</h3>
-              <p className="text-gray-600 leading-relaxed font-medium">
-                Toggle the wheelchair access option in Step 1 of the booking form. This ensures an accessible vehicle with trained driver awareness is allocated to your trip.
-              </p>
-            </div>
-            <div className="bg-brand-maroon text-white p-10 shadow-sm hover:shadow-md transition">
-              <h3 className="text-2xl font-bold text-brand-yellow mb-4">Child Seat Add-On</h3>
-              <p className="text-white/90 leading-relaxed font-medium">
-                Child seats are available as an extra option in Step 4 of the booking flow. Suitable for infants and toddlers up to 18kg.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* How to Book */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-5xl mx-auto px-6 md:px-12">
-          <h2 className="text-3xl font-bold text-brand-maroon mb-12">How to Book Accessible Transport</h2>
+      <div className="max-w-4xl mx-auto px-4 md:px-6 -mt-8 relative z-20">
+        
+        <form onSubmit={handleSearch} className="bg-white shadow-2xl border border-gray-100 p-8">
           
-          <div className="max-w-3xl space-y-8">
-            <div className="flex">
-              <div className="flex-shrink-0 mr-6 mt-1">
-                <div className="w-10 h-10 rounded-full bg-brand-yellow text-gray-900 font-bold flex items-center justify-center text-lg shadow-sm">
-                  1
+          {/* Accessibility Options */}
+          <div className="bg-blue-50 border border-blue-200 p-6 mb-8">
+             <div className="flex items-start mb-6 border-b border-blue-200 pb-4">
+               <ShieldCheck className="w-6 h-6 text-blue-600 mr-3 shrink-0" />
+               <div>
+                  <h2 className="text-lg font-black text-blue-900 uppercase tracking-widest leading-none mb-2">Special Assistance Included</h2>
+                  <p className="text-blue-800 text-sm font-medium">Our drivers are trained to assist passengers with special needs from pickup to dropoff.</p>
+               </div>
+             </div>
+
+             <label className="flex items-center cursor-pointer group bg-white border border-blue-100 p-4 shadow-sm hover:border-blue-300 transition-colors">
+                <div className={`w-8 h-8 rounded border-2 flex items-center justify-center mr-4 transition-colors ${needsWheelchair ? 'border-brand-maroon bg-brand-maroon' : 'border-gray-300 bg-gray-50 group-hover:border-gray-400'}`}>
+                  {needsWheelchair && <Accessibility className="w-5 h-5 text-white" />}
                 </div>
-              </div>
-              <div>
-                <h4 className="text-xl font-bold text-gray-900 mb-2">Start a Booking</h4>
-                <p className="text-gray-600 font-medium">Enter your pickup and drop-off locations in the booking form on the homepage.</p>
-              </div>
+                <input 
+                  type="checkbox" 
+                  className="sr-only" 
+                  checked={needsWheelchair}
+                  onChange={(e) => setNeedsWheelchair(e.target.checked)}
+                />
+                <div>
+                  <span className="font-black text-gray-900 text-lg uppercase tracking-wider block">Wheelchair Accessible Vehicle</span>
+                  <span className="text-sm text-gray-500 font-medium">Requires a vehicle with a ramp or lift.</span>
+                </div>
+             </label>
+          </div>
+
+          {/* Booking Fields */}
+          <div className="space-y-6">
+            <h3 className="text-sm font-bold text-gray-400 uppercase tracking-widest border-b border-gray-100 pb-2">Trip Details</h3>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+               <div>
+                 <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Pickup Location</label>
+                 <div className="relative">
+                   <MapPin className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-brand-maroon" />
+                   <input type="text" value={pickup} onChange={e => setPickup(e.target.value)} required className="w-full pl-12 pr-4 py-4 bg-gray-50 border border-gray-200 font-bold text-gray-900 focus:bg-white focus:ring-2 focus:ring-brand-maroon outline-none" />
+                 </div>
+               </div>
+               <div>
+                 <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Dropoff Location</label>
+                 <div className="relative">
+                   <MapPin className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                   <input type="text" value={dropoff} onChange={e => setDropoff(e.target.value)} required className="w-full pl-12 pr-4 py-4 bg-gray-50 border border-gray-200 font-bold text-gray-900 focus:bg-white focus:ring-2 focus:ring-brand-maroon outline-none" />
+                 </div>
+               </div>
             </div>
 
-            <div className="flex">
-              <div className="flex-shrink-0 mr-6 mt-1">
-                <div className="w-10 h-10 rounded-full bg-brand-yellow text-gray-900 font-bold flex items-center justify-center text-lg shadow-sm">
-                  2
-                </div>
-              </div>
-              <div>
-                <h4 className="text-xl font-bold text-gray-900 mb-2">Enable Wheelchair Access</h4>
-                <p className="text-gray-600 font-medium">In Step 1, toggle the "Wheelchair Access Required" option to filter for accessible vehicles only.</p>
-              </div>
-            </div>
-
-            <div className="flex">
-              <div className="flex-shrink-0 mr-6 mt-1">
-                <div className="w-10 h-10 rounded-full bg-brand-yellow text-gray-900 font-bold flex items-center justify-center text-lg shadow-sm">
-                  3
-                </div>
-              </div>
-              <div>
-                <h4 className="text-xl font-bold text-gray-900 mb-2">Add Child Seat (Optional)</h4>
-                <p className="text-gray-600 font-medium">In Step 4 — Extras — select "Child Seat" if required. You'll choose the appropriate size.</p>
-              </div>
-            </div>
-
-            <div className="flex">
-              <div className="flex-shrink-0 mr-6 mt-1">
-                <div className="w-10 h-10 rounded-full bg-brand-yellow text-gray-900 font-bold flex items-center justify-center text-lg shadow-sm">
-                  4
-                </div>
-              </div>
-              <div>
-                <h4 className="text-xl font-bold text-gray-900 mb-2">Confirm Your Ride</h4>
-                <p className="text-gray-600 font-medium">Review your booking details and confirm. Your accessible vehicle is reserved.</p>
-              </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+               <div>
+                 <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Date</label>
+                 <div className="relative">
+                   <Calendar className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                   <input type="date" value={date} onChange={e => setDate(e.target.value)} required className="w-full pl-12 pr-4 py-4 bg-gray-50 border border-gray-200 font-bold text-gray-900 focus:bg-white focus:ring-2 focus:ring-brand-maroon outline-none uppercase text-sm" />
+                 </div>
+               </div>
+               <div>
+                 <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Time</label>
+                 <div className="relative">
+                   <input type="time" value={time} onChange={e => setTime(e.target.value)} required className="w-full px-4 py-4 bg-gray-50 border border-gray-200 font-bold text-gray-900 focus:bg-white focus:ring-2 focus:ring-brand-maroon outline-none uppercase text-sm text-center" />
+                 </div>
+               </div>
+               <div>
+                 <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Passengers</label>
+                 <div className="relative">
+                   <Users className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                   <select value={passengers} onChange={e => setPassengers(Number(e.target.value))} className="w-full pl-12 pr-4 py-4 bg-gray-50 border border-gray-200 font-bold text-gray-900 focus:bg-white focus:ring-2 focus:ring-brand-maroon outline-none appearance-none cursor-pointer">
+                     {[1,2,3,4,5,6].map(n => <option key={n} value={n}>{n} {n === 1 ? 'Passenger' : 'Passengers'}</option>)}
+                   </select>
+                 </div>
+               </div>
             </div>
           </div>
-        </div>
-      </section>
 
-      {/* CTA Section */}
-      <section className="py-24 bg-brand-maroon-dark text-center">
-        <div className="max-w-4xl mx-auto px-6">
-          <h2 className="text-3xl font-bold text-white mb-6">Need Personalised Assistance?</h2>
-          <div className="text-white/90 text-lg mb-8 space-y-2">
-            <p>Phone: <span className="font-bold text-white">00233 123 456 789</span></p>
-            <p>Email: <span className="font-bold text-white">support@xtass.com</span></p>
-          </div>
-          <Link 
-            to="/" 
-            className="inline-block bg-brand-yellow text-gray-900 font-bold text-sm px-10 py-3.5 hover:bg-brand-yellow-hover transition duration-300 shadow-sm"
+          <button 
+            type="submit"
+            className="w-full mt-10 bg-brand-yellow font-black text-gray-900 py-5 hover:bg-brand-yellow-hover transition-colors shadow-lg uppercase tracking-widest text-lg flex justify-center items-center group"
           >
-            Contact Support
-          </Link>
+            <span>Search Accessible Vehicles</span>
+            <ArrowRight className="w-6 h-6 ml-3 group-hover:translate-x-2 transition-transform" />
+          </button>
+        </form>
+
+        {/* Contact Support Block */}
+        <div className="mt-12 bg-white border border-gray-200 p-8 text-center flex flex-col justify-center items-center">
+           <div className="w-16 h-16 bg-gray-50 rounded-full flex items-center justify-center mb-4">
+             <HelpCircle className="w-8 h-8 text-gray-400" />
+           </div>
+           <h3 className="text-xl font-black text-gray-900 uppercase tracking-wider mb-2">Need a custom arrangement?</h3>
+           <p className="text-gray-500 font-medium mb-6 max-w-lg">If you have specific medical requirements or need specialized escort services beyond standard accessibility, our support team is ready to assist.</p>
+           
+           <Link to="/help-support" className="inline-flex items-center justify-center px-8 py-3 bg-gray-900 text-white font-bold uppercase tracking-wider text-sm hover:bg-black transition-colors">
+             <Phone className="w-4 h-4 mr-2" /> Contact Support
+           </Link>
         </div>
-      </section>
+
+      </div>
     </main>
   );
 }

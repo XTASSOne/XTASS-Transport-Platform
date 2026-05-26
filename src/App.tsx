@@ -70,6 +70,9 @@ import PaymentSelection from './components/PaymentSelection';
 import PaymentProcessing from './components/PaymentProcessing';
 import Sitemap from './components/Sitemap';
 import SpecialNeeds from './components/SpecialNeeds';
+import HelpSupport from './components/HelpSupport';
+import RecentlyViewed from './components/RecentlyViewed';
+import RentalConfirmation from './components/RentalConfirmation';
 
 function Layout({ children }: { children: React.ReactNode }) {
   const location = useLocation();
@@ -98,6 +101,9 @@ export default function App() {
         <Routes>
           <Route path="/" element={<MainContent />} />
           <Route path="/sitemap" element={<Sitemap />} />
+          <Route path="/help-support" element={<HelpSupport />} />
+          <Route path="/recently-viewed" element={<RecentlyViewed />} />
+          <Route path="/rental-confirmation" element={<RentalConfirmation />} />
           <Route path="/instant-pickup" element={<InstantPickup />} />
           <Route path="/scheduled-rides" element={<ScheduledRides />} />
           <Route path="/airport-transfers" element={<AirportTransfers />} />

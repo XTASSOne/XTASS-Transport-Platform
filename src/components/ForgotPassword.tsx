@@ -1,110 +1,79 @@
-import { Loader2 } from 'lucide-react';
 import { useState } from 'react';
+import { Loader2, KeyRound, CheckCircle, ArrowLeft } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 export default function ForgotPassword() {
-  const [identifier, setIdentifier] = useState('');
+  const [identifier, setIdentifier] = useState('kwame@example.com');
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState('');
   const [isSuccess, setIsSuccess] = useState(false);
-
-  const isValidInput = () => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    const phoneRegex = /^[\d\s\+\-\(\)]{8,}$/;
-    return emailRegex.test(identifier) || phoneRegex.test(identifier);
-  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setError('');
-    
-    if (!isValidInput()) {
-      setError('Please enter a valid email address or phone number.');
-      return;
-    }
+    if (!identifier.trim()) return;
 
     setIsLoading(true);
 
+    // Mock API call
     setTimeout(() => {
       setIsLoading(false);
-      // Mock triggering an error condition
-      if (identifier === 'notfound@example.com' || identifier === '0000000000') {
-        setError('No account found with these details. Please check and try again.');
-      } else {
-        setIsSuccess(true);
-      }
+      setIsSuccess(true);
     }, 1500);
   };
 
   return (
-    <main className="flex-grow flex items-center justify-center py-16 px-4 bg-gray-50">
-      <div className="w-full max-w-md bg-white p-8 sm:p-10 rounded shadow-xl border border-gray-100">
-        <div className="text-center mb-8">
-          <h1 className="text-2xl font-bold text-gray-900 mb-3">Forgot Password?</h1>
-          <p className="text-gray-500 text-sm leading-relaxed">
-            Enter the email or phone number linked to your account.<br />
-            We'll send you reset instructions.
-          </p>
-        </div>
+    <main className="flex-grow flex flex-col items-center py-16 px-4 bg-gray-50">
+      <div className="w-full max-w-md bg-white p-8 md:p-10 shadow-2xl border border-gray-100 mt-12">
         
-        {isSuccess ? (
-          <div className="text-center animate-in fade-in zoom-in duration-300">
-            <div className="w-16 h-16 bg-[#F3EDF1] text-brand-maroon rounded-full flex items-center justify-center mx-auto mb-6">
-              <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-              </svg>
-            </div>
-            <p className="text-gray-700 font-medium mb-8 leading-relaxed text-[15px]">
-              Reset instructions sent to your email/phone. Please check your inbox.
-            </p>
-            <Link 
-              to="/signin" 
-              className="w-full block py-3 bg-[#B75F72] hover:bg-[#A04F62] rounded text-white font-bold transition-colors text-center shadow-sm"
-            >
-              Back to Sign In
-            </Link>
-          </div>
-        ) : (
+        {!isSuccess ? (
           <>
-            {error && (
-              <div className="mb-6 p-4 bg-red-50 border border-red-200 text-red-600 text-sm font-medium rounded">
-                <p>{error}</p>
-                {error.includes('No account found') && (
-                  <p className="mt-3 pt-3 border-t border-red-200/50 text-xs">
-                    Need help? <Link to="#" className="underline font-bold text-red-700 hover:text-red-800">Contact Support</Link>
-                  </p>
-                )}
+            <div className="mb-8 text-center flex flex-col items-center">
+              <div className="w-16 h-16 bg-gray-50 rounded-full flex items-center justify-center mb-4 border border-gray-200">
+                <KeyRound className="w-8 h-8 text-brand-maroon" />
               </div>
-            )}
+              <h1 className="text-2xl font-black text-gray-900 mb-2 uppercase tracking-tight">Forgot Password?</h1>
+              <p className="text-gray-500 font-medium text-sm leading-relaxed">
+                Enter your registered email address or phone number and we'll send you instructions to reset your password.
+              </p>
+            </div>
 
             <form onSubmit={handleSubmit} className="flex flex-col gap-6">
               <div>
-                <label className="block text-sm font-bold text-gray-700 mb-2">Email or Phone Number</label>
+                <label className="block text-sm font-bold text-gray-900 mb-2 uppercase tracking-wider">Email or Phone</label>
                 <input 
                   type="text" 
                   value={identifier}
                   onChange={(e) => setIdentifier(e.target.value)}
                   disabled={isLoading}
-                  className={`w-full rounded border p-3 text-sm focus:outline-none focus:ring-1 transition-colors ${error ? 'border-red-500 focus:border-red-500 focus:ring-red-500' : 'border-gray-300 focus:border-brand-maroon focus:ring-brand-maroon'} disabled:bg-gray-50 disabled:text-gray-500`} 
-                  placeholder="john@example.com or 024 123 4567" 
-                  autoFocus
+                  className="w-full border-2 border-gray-200 rounded p-4 text-sm font-medium focus:outline-none focus:border-brand-maroon focus:ring-0 disabled:bg-gray-50 transition-colors placeholder:font-normal placeholder:text-gray-400" 
+                  placeholder="e.g. john@example.com or 0241234567" 
                 />
               </div>
 
               <button 
                 type="submit"
-                disabled={identifier.trim() === '' || isLoading}
-                className="w-full py-3 bg-[#B75F72] hover:bg-[#A04F62] rounded text-white font-bold transition-colors disabled:opacity-50 flex items-center justify-center disabled:cursor-not-allowed shadow-sm"
+                disabled={!identifier.trim() || isLoading}
+                className="w-full py-4 bg-brand-maroon hover:bg-brand-maroon-hover rounded text-white font-bold uppercase tracking-wider text-sm transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
               >
-                {isLoading ? <Loader2 className="w-5 h-5 animate-spin" /> : 'Send Reset Instructions'}
+                {isLoading ? <Loader2 className="w-5 h-5 animate-spin" /> : 'Send Reset Link'}
               </button>
             </form>
-
-            <div className="mt-8 text-center text-sm text-gray-600">
-              Remembered it? <Link to="/signin" className="font-bold text-brand-maroon hover:underline">Back to Sign In</Link>
-            </div>
           </>
+        ) : (
+          <div className="text-center py-4 text-center flex flex-col items-center">
+            <CheckCircle className="w-16 h-16 text-green-500 mb-6" />
+            <h2 className="text-2xl font-black text-gray-900 uppercase tracking-tight mb-2">Request Sent!</h2>
+            <p className="text-gray-600 font-medium mb-8">
+              Reset instructions sent. Please check your email or phone for the next steps.
+            </p>
+          </div>
         )}
+
+        <div className="mt-8 text-center border-t border-gray-100 pt-6">
+          <Link to="/signin" className="inline-flex items-center text-sm font-bold text-gray-500 hover:text-brand-maroon transition-colors uppercase tracking-wider">
+            <ArrowLeft className="w-4 h-4 mr-2" /> Return to Login
+          </Link>
+        </div>
+
       </div>
     </main>
   );

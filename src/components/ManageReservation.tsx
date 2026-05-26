@@ -149,15 +149,37 @@ export default function ManageReservation() {
             <div className="w-20 h-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-6">
               <FileText className="w-10 h-10" />
             </div>
-            <h2 className="text-3xl font-black text-gray-900 mb-2">Record Found: {bookingId.toUpperCase()}</h2>
-            <p className="text-gray-600 font-medium mb-12">Here are the options available for this {selectedType === 'active' ? 'rental' : 'reservation'}.</p>
+            <h2 className="text-3xl font-black text-gray-900 mb-2">Reservation Found</h2>
+            
+            <div className="bg-gray-50 border border-gray-200 p-6 text-left max-w-2xl mx-auto my-8">
+              <div className="flex justify-between items-start mb-4">
+                <div>
+                  <span className="bg-brand-maroon text-white text-xs font-bold px-2 py-1 uppercase tracking-wider">Scheduled Ride</span>
+                  <h3 className="text-xl font-bold text-gray-900 mt-2">{bookingId.toUpperCase()}</h3>
+                </div>
+                <span className="text-sm font-bold text-green-600 border border-green-600 px-3 py-1 bg-green-50">CONFIRMED</span>
+              </div>
+              <div className="space-y-3">
+                <div className="flex items-start">
+                  <div className="w-1/2">
+                    <p className="text-xs text-gray-500 font-bold uppercase tracking-wider mb-1">Pick-up</p>
+                    <p className="text-sm font-medium text-gray-900">Kotoka International Airport (ACC)</p>
+                    <p className="text-xs text-gray-500">Thu, 15 Oct 2026 • 10:00 AM</p>
+                  </div>
+                  <div className="w-1/2 pl-4 border-l border-gray-200">
+                    <p className="text-xs text-gray-500 font-bold uppercase tracking-wider mb-1">Drop-off</p>
+                    <p className="text-sm font-medium text-gray-900">Kempinski Hotel Gold Coast City</p>
+                  </div>
+                </div>
+              </div>
+            </div>
             
             {selectedType === 'active' ? (
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-3xl mx-auto">
-                <button className="flex flex-col items-center justify-center p-6 border border-gray-200 hover:border-brand-maroon hover:text-brand-maroon transition-colors group">
-                  <Clock className="w-8 h-8 mb-3 text-gray-400 group-hover:text-brand-maroon" />
-                  <span className="font-bold text-sm uppercase tracking-wider">Extend Rental</span>
-                </button>
+                <Link to={`/booking-detail/${bookingId}`} className="flex flex-col items-center justify-center p-6 border border-gray-200 hover:border-brand-maroon hover:text-brand-maroon transition-colors group">
+                  <FileText className="w-8 h-8 mb-3 text-gray-400 group-hover:text-brand-maroon" />
+                  <span className="font-bold text-sm uppercase tracking-wider">View Full Details</span>
+                </Link>
                 <button className="flex flex-col items-center justify-center p-6 border border-gray-200 hover:border-brand-maroon hover:text-brand-maroon transition-colors group">
                   <Wrench className="w-8 h-8 mb-3 text-gray-400 group-hover:text-brand-maroon" />
                   <span className="font-bold text-sm uppercase tracking-wider">Report Issue</span>
@@ -169,18 +191,18 @@ export default function ManageReservation() {
               </div>
             ) : (
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-3xl mx-auto">
-                <button className="flex flex-col items-center justify-center p-6 border border-gray-200 hover:border-brand-maroon hover:text-brand-maroon transition-colors group">
+                <Link to={`/booking-detail/${bookingId}`} className="flex flex-col items-center justify-center p-6 border border-gray-200 hover:border-brand-maroon hover:text-brand-maroon transition-colors group">
                   <FileText className="w-8 h-8 mb-3 text-gray-400 group-hover:text-brand-maroon" />
                   <span className="font-bold text-sm uppercase tracking-wider">View Full Details</span>
-                </button>
-                <button className="flex flex-col items-center justify-center p-6 border border-gray-200 hover:border-brand-yellow hover:bg-brand-yellow/10 transition-colors group">
+                </Link>
+                <Link to={`/modify-booking/${bookingId}`} className="flex flex-col items-center justify-center p-6 border border-gray-200 hover:border-brand-yellow hover:bg-brand-yellow/10 transition-colors group">
                   <Edit3 className="w-8 h-8 mb-3 text-gray-400 group-hover:text-brand-yellow-dark" />
                   <span className="font-bold text-sm uppercase tracking-wider text-gray-900">Modify Reservation</span>
-                </button>
-                <button className="flex flex-col items-center justify-center p-6 border border-gray-200 hover:border-red-600 hover:bg-red-50 transition-colors group">
+                </Link>
+                <Link to={`/cancel-booking/${bookingId}`} className="flex flex-col items-center justify-center p-6 border border-gray-200 hover:border-red-600 hover:bg-red-50 transition-colors group">
                   <XCircle className="w-8 h-8 mb-3 text-gray-400 group-hover:text-red-500" />
                   <span className="font-bold text-sm uppercase tracking-wider text-gray-900 group-hover:text-red-600">Cancel Reservation</span>
-                </button>
+                </Link>
               </div>
             )}
             
